@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.example.mvvmapp.R;
 import com.example.mvvmapp.databinding.ActivityMainBinding;
+import com.example.mvvmapp.pojo.Data;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -32,6 +36,18 @@ public class MainActivity extends AppCompatActivity{
         //assign variable in data in xml file
         binding.setViewMod(movieViewModel);
         binding.setLifecycleOwner(this);
+
+        //recycler and adapter
+        MovieAdapter adapter =new MovieAdapter();
+        binding.recycler.setAdapter(adapter);
+        binding.recycler.setLayoutManager(new LinearLayoutManager(this));
+
+        movieViewModel.movieNameMutableLiveData.observe(this, new Observer<ArrayList<Data>>() {
+            @Override
+            public void onChanged(ArrayList<Data> data) {
+                adapter.fillList(data);
+            }
+        });
 
         //replace with on click in xml
 

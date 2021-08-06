@@ -47,4 +47,11 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:2.4.0-alpha02"
 
+    //card
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    //recycler
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+
+
 }
